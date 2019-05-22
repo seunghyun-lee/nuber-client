@@ -17,31 +17,31 @@ interface IProps {
     isLoggedIn: boolean;
 }
 
-const AppPresenter: React.SFC<IProps> = ({ isLoggedIn }) => (
+const AppPresenter: React.FunctionComponent<IProps> = ({ isLoggedIn }) => (
     <BrowserRouter>
         { isLoggedIn ? <LoggedInRoutes /> : <LoggedOutRoutes /> }
     </BrowserRouter>
 );    
 
-const LoggedOutRoutes: React.SFC = () => (
-    <Switch>
-        <Route path={"/"} exact={true} cpmponent={Login} />
+const LoggedOutRoutes: React.FunctionComponent = () => (
+    <Switch>        
+        <Route path={"/"} exact={true} component={Login} />
         <Route path={"/phone-login"} component={PhoneLogin} />
-        <Route path={"/verify-phone/:number"} component={VerifyPhone} />
-        <Route path={"/social-login"} component={SocialLogin} />
+        <Route path={"/verify-phone/"} component={VerifyPhone} />
+        <Route path={"/social-login"} component={SocialLogin} />        
         <Redirect from={"*"} to={"/"} />
     </Switch>
 );
 
-const LoggedInRoutes: React.SFC = () => (
+const LoggedInRoutes: React.FunctionComponent = () => (
     <Switch>
         <Route path={"/"} exact={true} component={Home} />
-        <Route path={"/ride"}exact={true} component={Ride} />
-        <Route path={"/edit-accout"}exact={true} component={EditAccount} />
-        <Route path={"/settings"}exact={true} component={Settings} />
-        <Route path={"/places"}exact={true} component={Places} />
-        <Route path={"/add-place"}exact={true} component={AddPlace} />
-        <Route path={"/find-address"}exact={true} component={FindAddress} />
+        <Route path={"/ride"} exact={true} component={Ride} />
+        <Route path={"/edit-accout"} exact={true} component={EditAccount} />
+        <Route path={"/settings"} exact={true} component={Settings} />
+        <Route path={"/places"} exact={true} component={Places} />
+        <Route path={"/add-place"} exact={true} component={AddPlace} />
+        <Route path={"/find-address"} exact={true} component={FindAddress} />
         <Redirect from={"*"} to={"/"} />
     </Switch>
 );

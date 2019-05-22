@@ -67,7 +67,7 @@ const SocialLink = styled.span`
 
 interface IProps extends RouteComponentProps<any> {}
 
-const OutHomePresenter: React.SFC<IProps> = () => (
+const OutHomePresenter: React.FunctionComponent<IProps> = () => (
   <Container>
     <Header>
         <Helmet>
