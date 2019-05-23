@@ -17,23 +17,23 @@ interface IProps {
     isLoggedIn: boolean;
 }
 
-const AppPresenter: React.FunctionComponent<IProps> = ({ isLoggedIn }) => (
+const AppPresenter: React.SFC<IProps> = ({ isLoggedIn }) => (
     <BrowserRouter>
         { isLoggedIn ? <LoggedInRoutes /> : <LoggedOutRoutes /> }
     </BrowserRouter>
 );    
 
-const LoggedOutRoutes: React.FunctionComponent = () => (
+const LoggedOutRoutes: React.SFC = () => (
     <Switch>        
         <Route path={"/"} exact={true} component={Login} />
         <Route path={"/phone-login"} component={PhoneLogin} />
-        <Route path={"/verify-phone/"} component={VerifyPhone} />
+        <Route path={"/verify-phone/:number"} component={VerifyPhone} />
         <Route path={"/social-login"} component={SocialLogin} />        
         <Redirect from={"*"} to={"/"} />
     </Switch>
 );
 
-const LoggedInRoutes: React.FunctionComponent = () => (
+const LoggedInRoutes: React.SFC = () => (
     <Switch>
         <Route path={"/"} exact={true} component={Home} />
         <Route path={"/ride"} exact={true} component={Ride} />
