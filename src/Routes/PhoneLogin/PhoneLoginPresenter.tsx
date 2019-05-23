@@ -8,6 +8,7 @@ import styled from "../../typed-components";
 const Container = styled.div`
     margin-top: 30px;
     padding: 50px 20px;
+    cursor: pointer;
 `;
 
 const BackArrowExtended = styled(BackArrow)`
