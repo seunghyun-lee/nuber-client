@@ -26,6 +26,7 @@ class PhoneLoginContainer extends React.Component<RouteComponentProps<any>, ISta
     };
 
     public render() {
+        const { history } = this.props;
         const { countryCode, phoneNumber } = this.state;
         return (
             <PhoneSignInMutation
@@ -35,8 +36,17 @@ class PhoneLoginContainer extends React.Component<RouteComponentProps<any>, ISta
                 }}
                 onCompleted={data => {
                     const { StartPhoneVerification } = data;
+                    const phone = `${countryCode}${phoneNumber}`;
                     if(StartPhoneVerification.ok) {
-                        return;
+                        toast.success("SMS Sent! Redirecting you...");
+                        setTimeout(() => {
+                            history.push({
+                                pathname: "/verify-phone",
+                                state: {
+                                    phone
+                                }
+                            });
+                        }, 2000);
                     } else {
                         toast.error(StartPhoneVerification.error);
                     }
@@ -45,12 +55,11 @@ class PhoneLoginContainer extends React.Component<RouteComponentProps<any>, ISta
             >
                 {(mutation, { loading }) => {
                     const onSubmit: React.FormEventHandler<HTMLFormElement> = event => {
-                        event.preventDefault();                                
-                        const isValid = /^\+[1-9]{1}[0-9]{7,11}$/.test(
-                            `${countryCode}${phoneNumber}`
-                        );
+                        event.preventDefault();  
+                        const phone = `${countryCode}${phoneNumber}`;
+                        const isValid = /^\+[1-9]{1}[0-9]{7,11}$/.test(phone);
                         if(isValid) {
-                            mutation();
+                            mutation();                            
                         } else {
                             toast.error("Please write a valid phone number");
                         }
