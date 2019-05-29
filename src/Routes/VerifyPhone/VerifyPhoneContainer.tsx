@@ -6,17 +6,17 @@ interface IState {
     key: string;
 }
 
-interface IProps extends RouteComponentProps<any> {}
+// interface IProps extends RouteComponentProps<any> {}
 
-class VerifyPhoneContainer extends React.Component<IProps, IState> {
+class VerifyPhoneContainer extends React.Component<RouteComponentProps<any>, IState> {
     public state = {
         key: ""
     };
-    constructor(props: IProps) {
+    constructor(props) {
         super(props);
-        // if(!props.location.state) {
-        //     props.history.push("/");
-        // }
+        if(!props.location.state) {
+            props.history.push("/");
+        }
     }
     public render() {
         const { key } = this.state;
