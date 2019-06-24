@@ -2,7 +2,7 @@ import React from "react";
 import { MutationFn } from "react-apollo";
 import { Link } from "react-router-dom";
 import styled from "../../typed-components";
-import { toggleDriving, userProfile } from "../../types/api";
+import { userProfile } from "../../types/api";
 
 
 const Container = styled.div`
@@ -80,43 +80,47 @@ const ToggleDriving = styled<IToggleProps, any>("button")`
 interface IProps {
   data?: userProfile;
   loading: boolean;
-  toggleDrivingFn: MutationFn<toggleDriving>;
+  toggleDrivingFn: MutationFn;
 }
 
 const MenuPresenter: React.SFC<IProps> = ({
-  data: { GetMyProfile: { user = null } = {} } = null, 
+  data, 
   loading,
   toggleDrivingFn
 }) => {
+  const GetMyProfile = data!.GetMyProfile;
+  console.log(GetMyProfile);
+  return (
     <Container>
       {!loading &&
-      user &&
-      userInfo.fullName && (
+      GetMyProfile.user &&
+      GetMyProfile.ok && (
         <React.Fragment>
           <Header>
             <Grid>
               <Link to={"/edit-account"}>
                 <Image
                   src={
-                    user.profilePhoto ||
+                    GetMyProfile.user.profilePhoto ||
                     "https://yt3.ggpht.com/-CTwXMuZRaWw/AAAAAAAAAAI/AAAAAAAAAAA/HTJy-KJ4F2c/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
                   }
                 />
               </Link>
               <Text>
-                <Name>{user.fullName}</Name>
+                <Name>{GetMyProfile.user.fullName}</Name>
                 <Rating>4.5</Rating>
               </Text>
             </Grid>
           </Header>
           <SLink to="/trips">Your Trips</SLink>
           <SLink to="/settings">Settings</SLink>            
-          <ToggleDriving onClick={toggleDrivingFn} isDriving={user.isDriving}>
-            {user.isDriving ? "Stop driving" : "Start driving"}
+          <ToggleDriving onClick={toggleDrivingFn} isDriving={GetMyProfile.user.isDriving}>
+            {GetMyProfile.user.isDriving ? "Stop driving" : "Start driving"}
           </ToggleDriving>
         </React.Fragment>
       )}
     </Container>    
+  );
 };
 
 export default MenuPresenter;
