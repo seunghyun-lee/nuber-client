@@ -99,6 +99,9 @@ export interface verifyPhoneVariables {
 export interface userProfile_GetMyProfile_user {
   __typename: "User";
   profilePhoto: string | null;
+  firstName: string;
+  lastName: string;
+  email: string | null;
   fullName: string | null;
   isDriving: boolean;
 }
@@ -112,6 +115,30 @@ export interface userProfile_GetMyProfile {
 
 export interface userProfile {
   GetMyProfile: userProfile_GetMyProfile;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: updateProfile
+// ====================================================
+
+export interface updateProfile_UpdateMyProfile {
+  __typename: "UpdateMyProfileResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface updateProfile {
+  UpdateMyProfile: updateProfile_UpdateMyProfile;
+}
+
+export interface updateProfileVariables {
+  firstName: string;
+  lastName: string;
+  email: string;
+  profilePhoto: string;
 }
 
 /* tslint:disable */
