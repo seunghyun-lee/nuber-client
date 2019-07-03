@@ -14,7 +14,7 @@ Client for the (N)Uber Clone Course on Nomad Academy. ReactJS, Apollo, Typescrip
 ### Logged In:
 - [ ] Home
 - [ ] Ride
-- [ ] Edit Accout
+- [x] Edit Accout
 - [ ] Settings
 - [ ] Places
 - [ ] Add Place
