@@ -37,5 +37,6 @@
     "axios": "^0.19.0",
     "gh-pages": "^2.0.1",
     "typescript": "^3.0.1"
-  }
+  }, 
+  "homepage": "https://seunghyun-lee.github.io/nuber-client/"
 }
